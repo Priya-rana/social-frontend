@@ -11,6 +11,8 @@ import { NavHeaderComponent } from './nav-header/nav-header.component';
 import { CategoryComponent } from './category/category.component';
 import {RouterModule , Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
+import { PlatformService } from './services/platform.service';
+import { CategoryService } from './services/category.service';
 
 const appRoutes: Routes = [
 
@@ -42,7 +44,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    PlatformService,
+    CategoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

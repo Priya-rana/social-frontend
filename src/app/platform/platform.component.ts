@@ -13,12 +13,16 @@ export class PlatformComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("COmes here");
-    this.service.getPlatforms()
+    this.service.get()
     .subscribe(
-      Response => {
-      this.platforms = Response;
-      }
+      platformObject => {
+      this.platforms = platformObject;
+      },
+      error => {
+      alert("An unxpected error");
+      console.log(error);
+     }
+ 
   )
  
   }

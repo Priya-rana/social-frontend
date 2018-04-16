@@ -55,8 +55,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="gradeX" *ngFor="let platform of platforms">
-                        <td></td>
+                    <tr class="gradeX" *ngFor="let platform of platforms; let i = index">
+                        <td>{{i+1}}</td>
                         <td>{{platform.name}}</td>
                         <td>{{platform.img_url}}</td>
                         <td class="center">{{platform.package_name_android}}</td>
