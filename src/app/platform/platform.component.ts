@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {PlatformService} from '../services/platform.service';
 
 @Component({
   selector: 'app-platform',
@@ -9,13 +9,18 @@ import { HttpClient } from '@angular/common/http';
 export class PlatformComponent implements OnInit {
   platforms;
 
-  constructor(http : HttpClient) { 
-    http.get('http://localhost:3000/api/platform').subscribe(Response => {
-      this.platforms = Response;
-    })
+  constructor(private service: PlatformService) { 
   }
 
   ngOnInit() {
+    console.log("COmes here");
+    this.service.getPlatforms()
+    .subscribe(
+      Response => {
+      this.platforms = Response;
+      }
+  )
+ 
   }
 
 }
