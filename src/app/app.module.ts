@@ -8,8 +8,9 @@ import { LeftNavBarComponent } from './left-nav-bar/left-nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
-import {RouterModule , Routes} from '@angular/router';
 import { CategoryComponent } from './category/category.component';
+import {RouterModule , Routes} from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'
 
 const appRoutes: Routes = [
 
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

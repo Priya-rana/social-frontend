@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-platform',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./platform.component.css']
 })
 export class PlatformComponent implements OnInit {
+  platforms;
 
-  constructor() { }
+  constructor(http : HttpClient) { 
+    http.get('http://localhost:3000/api/platform').subscribe(Response => {
+      this.platforms = Response;
+    })
+  }
 
   ngOnInit() {
   }
