@@ -6,7 +6,7 @@ import { DataService } from './data-service';
 export class CategoryService extends DataService{
 
   constructor(http: HttpClient) {
-    super('http://localhost:3000/api/category',http);
+    super('http://13.127.30.139:3000/api/category',http);
   }
   
 }
