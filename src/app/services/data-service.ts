@@ -12,4 +12,9 @@ export class DataService {
     return this.http.get(this.url);
   }
 
+  post(resource){
+    //   return Observable.throw(new AppError);
+    return this.http.post(this.url,resource);
+  }
+
 }

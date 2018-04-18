@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// Add Form Module
+import { FormsModule } from '@angular/forms'; 
 
 
 import { AppComponent } from './app.component';
@@ -16,6 +18,10 @@ import { CategoryService } from './services/category.service';
 
 const appRoutes: Routes = [
 
+  {
+    path:'createPlatform',
+    component:PlatformComponent
+  },
   {
     path:'platform',
     component:PlatformComponent
@@ -42,7 +48,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     PlatformService,
