@@ -34,16 +34,16 @@ export class PlatformComponent implements OnInit {
  
   }
 
-  onSubmit(f){
-    console.log(f.value);
-    console.log(f.value.platformName);
-    let postObject = {};
-    postObject['name'] = f.value.platformName;
-    console.log(postObject);
-    console.log("Comes here");
-    this.service.post(postObject).subscribe(platformObject => {
-      console.log(platformObject);
-    });
+  createPlatform(postData){
+    console.log(postData);
+    // If there is no error in posted data 
+    if(postData.valid){
+      // Send Request To Server
+      this.service.post(postData.value).subscribe(platformObject => {
+        console.log(platformObject);
+      });
+    }
+    
   }
 
 }

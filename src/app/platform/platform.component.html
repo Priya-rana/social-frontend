@@ -109,14 +109,24 @@
                             </div>
                         </div>
                         <div class="ibox-content">
-                            <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)" >
+                            <form class="form-horizontal" #createPlatformForm="ngForm" (ngSubmit)="createPlatform(createPlatformForm)" >
                                 <div class="form-group"><label class="col-sm-2 control-label">Platform Name</label>
 
-                                    <div class="col-sm-10"><input  type="text" placeholder="Enter Platform Name Here" class="form-control" name="platformName" #nameVar="ngModel" required ngModel></div>
-                                    <div *ngIf="nameVar.invalid && (nameVar.dirty || nameVar.touched)" class="alert alert-danger">
-                                        <div *ngIf="nameVar.errors.required">
-                                            Name is required.
-                                          </div>
+                                    <div class="col-sm-10">
+                                        <input  type="text" placeholder="Enter Platform Name Here" class="form-control" name="name" 
+                                            #platformNameVar="ngModel" 
+                                            required
+                                            minlength="3" 
+                                            ngModel
+                                        >
+                                    </div>
+                                    <div *ngIf="platformNameVar.invalid && (platformNameVar.dirty || platformNameVar.touched)" class="alert alert-danger">
+                                        <div *ngIf="platformNameVar?.errors?.required">
+                                            Platform Name is required.
+                                        </div>
+                                        <div *ngIf="platformNameVar?.errors?.minlength">
+                                                Platform Name must of {{platformNameVar.errors.minlength.requiredLength}} character
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -133,8 +143,8 @@
                                 
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
-                                        <button class="btn btn-white" type="submit">Cancel</button>
-                                        <button class="btn btn-primary" type="submit">Save changes</button>
+                                        <!-- <button class="btn btn-white" type="submit" >Cancel</button> -->
+                                        <button class="btn btn-primary" type="submit" [disabled]="!createPlatformForm.valid">Save</button>
                                     </div>
                                 </div>
                             </form>
