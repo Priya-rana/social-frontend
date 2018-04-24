@@ -54,6 +54,7 @@
                         <th>Platform Image Url</th>
                         <th>Android Package</th>
                         <th>IOS Package</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,17 +64,14 @@
                         <td>{{platform.img_url}}</td>
                         <td class="center">{{platform.package_name_android}}</td>
                         <td class="center">{{platform.package_name_ios}}</td>
+                        <td class="center">
+                                <button type="button" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-edit"></i></button>  
+                                <button type="button" 
+                                        class="btn btn-default btn-lg"
+                                        (click)="delete('1')" ><i class="glyphicon glyphicon-trash"></i></button> 
+                        </td>
                     </tr>
                     </tbody>
-                    <!-- <tfoot>
-                    <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                    </tr>
-                    </tfoot> -->
                     </table>
                         </div>
 
@@ -132,16 +130,21 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Andorid Package Name</label>
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Enter Andorid Package Name Here" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Enter Andorid Package Name Here" class="form-control" name="package_name_android" ngModel></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group"><label class="col-sm-2 control-label">IOS Package Name</label>
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Enter IOS Package Name Here" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Enter IOS Package Name Here" class="form-control" name="package_name_ios" ngModel></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                
-                                <input id="photo" type="file" />
+                                <div class="form-group">
+                                        <label class="col-sm-2 control-label">Upload Platform Image</label>
+                                        <div class="col-sm-10">
+                                            <input id="img_name" type="file"  accept="image/*" (change)="changeListener($event)" name="img_name" ngModel/>
+                                        </div>    
+                                </div>
+                                <div class="hr-line-dashed"></div>
                                 
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
