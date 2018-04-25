@@ -17,7 +17,10 @@ import { PlatformService } from './services/platform.service';
 import { CategoryService } from './services/category.service';
 
 const appRoutes: Routes = [
-
+  {
+    path:'createPlatform/:id',
+    component:PlatformComponent
+  },
   {
     path:'createPlatform',
     component:PlatformComponent

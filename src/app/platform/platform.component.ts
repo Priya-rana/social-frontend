@@ -1,5 +1,5 @@
 // Using Imput for two way binding for img_name input field
-import { Component, OnInit ,ElementRef , Input } from '@angular/core';
+import { Component, OnInit  , Input } from '@angular/core';
 import {PlatformService} from '../services/platform.service';
 // For Getting Route Parameters
 import { ActivatedRoute,Router } from '@angular/router';
@@ -14,13 +14,14 @@ export class PlatformComponent implements OnInit {
   platforms;
   url;
 
-  constructor(private route: ActivatedRoute,private router: Router,private service: PlatformService,private el: ElementRef) { 
+  constructor(private route: ActivatedRoute,private router: Router,private service: PlatformService) { 
     
   }
 
   ngOnInit() {
 
     this.url = this.router.url;
+    console.log(this.url);
     this.service.get()
     .subscribe(
       platformObject => {
@@ -63,9 +64,16 @@ export class PlatformComponent implements OnInit {
     myReader.readAsDataURL(file);
   }
 
-  delete(id: number) {
-    if(confirm("Are you sure to delete "+id)) {
-      console.log("Implement delete functionality here");
+  delete(platform) {
+    if(confirm("Are you sure to delete " + platform.name)) {
+      this.service.delete(platform.id).subscribe(
+        response => {
+          let index = this.platforms.indexOf(platform);
+          this.platforms.splice(index,1);
+        }
+     ,
+     (error) => console.log(error)
+      );
     }
   }
 

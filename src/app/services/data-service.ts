@@ -22,4 +22,13 @@ export class DataService {
     return this.http.post(this.url,resource);
   }
 
+  
+  delete(id) {
+    return this.http.delete(this.url + '/' + id);
+  }
+
+  put(resource) {
+    return this.http.put(this.url + '/' + resource.id, resource);
+  }
+
 }
