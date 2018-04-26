@@ -1,0 +1,92 @@
+<div *ngIf="url !== '/platform' " class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Create Platform</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">Config option 1</a>
+                        </li>
+                        <li><a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <form class="form-horizontal" #createPlatformForm="ngForm" (ngSubmit)="createPlatform(createPlatformForm)" >
+                    <div class="form-group"><label class="col-sm-2 control-label">Platform Name</label>
+
+                        <div class="col-sm-10">
+                            <input  type="text" placeholder="Enter Platform Name Here" class="form-control" name="name" 
+                                #platformNameVar="ngModel" 
+                                required
+                                minlength="3" 
+                                [ngModel]="platform.name"
+
+                            >
+                        </div>
+                        <div *ngIf="platformNameVar.invalid && (platformNameVar.dirty || platformNameVar.touched)" class="alert alert-danger">
+                            <div *ngIf="platformNameVar?.errors?.required">
+                                Platform Name is required.
+                            </div>
+                            <div *ngIf="platformNameVar?.errors?.minlength">
+                                    Platform Name must of {{platformNameVar.errors.minlength.requiredLength}} character
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Andorid Package Name</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" placeholder="Enter Andorid Package Name Here" class="form-control" name="package_name_android" [ngModel]="platform.package_name_android">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">IOS Package Name</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" placeholder="Enter IOS Package Name Here" class="form-control" name="package_name_ios" [(ngModel)]="platform.package_name_ios">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group" [hidden]='!platform.img_url'>
+                            <label class="col-sm-2 control-label">Uploaded Image</label>
+                            <div class="col-sm-10">
+                                    <img src="{{platform.img_url}}" name='img_url' height="50px" width="50px">
+                            </div>    
+                    </div>
+                    <div class="hr-line-dashed" [hidden]='!platform.img_url'></div>
+
+                    <div class="form-group">
+                            <label class="col-sm-2 control-label">Upload Platform Image</label>
+                            <div class="col-sm-10">
+                                <input id="img_name" type="file"  accept="image/*" (change)="changeListener($event)" name="img_name" ngModel/>
+                            </div>    
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <!-- <button class="btn btn-white" type="submit" >Cancel</button> -->
+                            <button class="btn btn-primary" type="submit" [disabled]="!createPlatformForm.valid">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

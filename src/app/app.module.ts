@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import { PlatformComponent } from './platform/platform.component';
+import { PlatformListComponent } from './platform/platform-list.component';
 import { LeftNavBarComponent } from './left-nav-bar/left-nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
@@ -15,19 +15,20 @@ import {RouterModule , Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
 import { PlatformService } from './services/platform.service';
 import { CategoryService } from './services/category.service';
+import { PlatformDetailComponent } from './platform/platform-detail.component';
 
 const appRoutes: Routes = [
   {
     path:'createPlatform/:id',
-    component:PlatformComponent
+    component:PlatformDetailComponent
   },
   {
     path:'createPlatform',
-    component:PlatformComponent
+    component:PlatformDetailComponent
   },
   {
     path:'platform',
-    component:PlatformComponent
+    component:PlatformListComponent
   },
   {
     path:'category',
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    PlatformComponent,
+    PlatformListComponent,
+    PlatformDetailComponent,
     LeftNavBarComponent,
     FooterComponent,
     RightSidebarComponent,
