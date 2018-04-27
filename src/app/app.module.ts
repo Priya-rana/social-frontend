@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule , ErrorHandler} from '@angular/core';
 // Add Form Module
 import { FormsModule } from '@angular/forms'; 
+import { AppErrorHandler } from './common/app-error-handler';
+
 
 
 import { AppComponent } from './app.component';
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     PlatformService,
-    CategoryService
+    CategoryService,
+    {provide: ErrorHandler , useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]
 })

@@ -24,11 +24,7 @@ export class PlatformListComponent implements OnInit {
     .subscribe(
       platformObject => {
       this.platforms = platformObject;
-      },
-      error => {
-      alert("An unxpected error");
-      console.log(error);
-     }
+      }
     )
  
   }
