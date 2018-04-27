@@ -3,7 +3,7 @@
       <h2>Platform</h2>
       <ol class="breadcrumb">
           <li>
-              <a href="index.html">Home</a>
+              <a >Home</a>
           </li>
           <li>
               <a>Platform</a>
@@ -61,7 +61,9 @@
                     <tr class="gradeX" *ngFor="let platform of platforms; let i = index">
                         <td>{{i+1}}</td>
                         <td>{{platform.name}}</td>
-                        <td>{{platform.img_url}}</td>
+                        <td class="center">
+                            <img src="{{platform.img_url}}" *ngIf="platform.img_url"  height="30px" width="30px">
+                        </td>
                         <td class="center">{{platform.package_name_android}}</td>
                         <td class="center">{{platform.package_name_ios}}</td>
                         <td class="center">

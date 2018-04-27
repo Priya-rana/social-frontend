@@ -12,12 +12,14 @@ import { LeftNavBarComponent } from './left-nav-bar/left-nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
-import { CategoryComponent } from './category/category.component';
 import {RouterModule , Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
 import { PlatformService } from './services/platform.service';
 import { CategoryService } from './services/category.service';
 import { PlatformDetailComponent } from './platform/platform-detail.component';
+import { CategoryListComponent } from './category/category-list.component';
+import { CategoryCreateComponent } from './category/category-create.component';
+
 
 const appRoutes: Routes = [
   {
@@ -33,10 +35,17 @@ const appRoutes: Routes = [
     component:PlatformListComponent
   },
   {
-    path:'category',
-    component:CategoryComponent
+    path:'categoryList',
+    component:CategoryListComponent
+  },
+  {
+    path:'createCategory/:id',
+    component:CategoryCreateComponent
+  },
+  {
+    path:'createCategory',
+    component:CategoryCreateComponent
   }
-  
 ];
 
 
@@ -50,7 +59,8 @@ const appRoutes: Routes = [
     FooterComponent,
     RightSidebarComponent,
     NavHeaderComponent,
-    CategoryComponent
+    CategoryListComponent,
+    CategoryCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +71,7 @@ const appRoutes: Routes = [
   providers: [
     PlatformService,
     CategoryService,
-    {provide: ErrorHandler , useClass: AppErrorHandler}
+    // {provide: ErrorHandler , useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]
 })

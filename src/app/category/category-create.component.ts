@@ -1,26 +1,26 @@
 import { Component, OnInit , Input } from '@angular/core';
-import {PlatformService} from '../services/platform.service';
+import {CategoryService} from '../services/category.service';
 // For Getting Route Parameters
 import { ActivatedRoute,Router} from '@angular/router';
-import { Platform } from './platform.model';
+ import { Category } from './category.model';
 
 
 @Component({
-    selector: 'app-platform',
-    templateUrl: './platform-detail.component.html',
+    selector: 'app-category',
+    templateUrl: './category-create.component.html',
   })
 
-export class PlatformDetailComponent implements OnInit {
+export class CategoryCreateComponent implements OnInit {
     @Input() img_name: any;
-    platform = new Platform();
+     category = new Category();
     
-    constructor(private service: PlatformService,private route: ActivatedRoute,private router: Router){
+    constructor(private service: CategoryService,private route: ActivatedRoute,private router: Router){
         
     }
     
     ngOnInit() {
         let id = this.route.snapshot.params["id"];
-        this.service.get(id).subscribe((platform : Platform) => this.platform = platform );
+        this.service.get(id).subscribe((category : Category) => this.category = category );
 
     }
 
@@ -32,10 +32,9 @@ export class PlatformDetailComponent implements OnInit {
         this.service.post(postData.value).subscribe(
          (success) => {
             // Page redirect when getting response
-            this.router.navigate(['/platform']);
+            this.router.navigate(['/categoryList']);
             console.log(success);
-        },
-        (error) => console.log(error));
+        });
      }
 
      updatePlatform(postData){
@@ -46,10 +45,9 @@ export class PlatformDetailComponent implements OnInit {
         this.service.put(postData.value).subscribe(
          (success) => {
             // Page redirect when getting response
-            this.router.navigate(['/platform']);
+            this.router.navigate(['/categoryList']);
             console.log(success);
-        }
-      );
+        });
 
      }
    
