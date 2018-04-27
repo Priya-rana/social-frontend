@@ -2,7 +2,7 @@
 import { Component, OnInit  , Input } from '@angular/core';
 import {PlatformService} from '../services/platform.service';
 // For Getting Route Parameters
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-platform',
@@ -15,13 +15,11 @@ export class PlatformListComponent implements OnInit {
   platforms;
   url;
 
-  constructor(private route: ActivatedRoute,private router: Router,private service: PlatformService) { 
+  constructor(private route: ActivatedRoute,private service: PlatformService) { 
     
   }
 
   ngOnInit() {
-
-    this.url = this.router.url;
     this.service.get()
     .subscribe(
       platformObject => {

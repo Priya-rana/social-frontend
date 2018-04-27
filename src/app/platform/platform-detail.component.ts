@@ -19,8 +19,7 @@ export class PlatformDetailComponent implements OnInit {
     }
     
     ngOnInit() {
-         const id = +this.route.snapshot.params["id"];
-        // console.log(id);
+         let id = this.route.snapshot.params["id"];
         this.service.get(id).subscribe((platform : Platform) => this.platform = platform );
 
     }

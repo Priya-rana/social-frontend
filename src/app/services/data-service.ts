@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import {URLSearchParams} from '@angular/http';
 import { Component, OnInit  } from '@angular/core';
+import { constructDependencies } from '@angular/core/src/di/reflective_provider';
 
 
 
@@ -13,22 +14,16 @@ export class DataService {
   private url : string;
     constructor(private apiPath: string,private http: HttpClient) { 
       this.url = this.server_host+this.apiPath;
-      //  this.route.params.subscribe( params => console.log(params) );
-      //  this.route.params.subscribe( params => console.log(params) );
     }
 
     
   get(param?: number) {
-
-    
-    //  this.route.snapshot.params.param1;
-        //  const id = +this.route.snapshot.params["id"];
-        // console.log(id);
-    // This method return observable an observable of response
+   
+    let getUrl = this.url;
     if(param){
-      this.url = this.url+'/'+param;
+      getUrl = this.url+'/'+param;
     }
-    return this.http.get(this.url);
+    return this.http.get(getUrl);
   }
 
   post(resource){
