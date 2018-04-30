@@ -1,0 +1,117 @@
+<div  class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Create Group</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">Config option 1</a>
+                        </li>
+                        <li><a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <form class="form-horizontal" #createGroupForm="ngForm" (ngSubmit)="createGroup(createGroupForm)" >
+                    <div class="form-group"><label class="col-sm-2 control-label">Group Name</label>
+
+                        <div class="col-sm-10">
+                            <input  type="text" placeholder="Enter Group Name Here" class="form-control" name="name" 
+                                #groupNameVar="ngModel" 
+                                required
+                                minlength="3" 
+                                [ngModel]="group.name"
+
+                            >
+                        </div>
+                        <div *ngIf="groupNameVar.invalid && (groupNameVar.dirty || groupNameVar.touched)" class="alert alert-danger">
+                            <div *ngIf="groupNameVar?.errors?.required">
+                                Category Name is required.
+                            </div>
+                            <div *ngIf="groupNameVar?.errors?.minlength">
+                                    Category Name must of {{groupNameVar.errors.minlength.requiredLength}} character
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Group URL</label>
+
+                        <div class="col-sm-10">
+                            <input  type="text" placeholder="Enter Group URL Here" class="form-control" name="group_url" 
+                                #groupURLVar="ngModel" 
+                                required
+                                minlength="3" 
+                                [ngModel]="group.group_url"
+
+                            >
+                        </div>
+                       
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                   
+
+                          <div class="form-group">
+                                <label class="col-sm-2 control-label">Select Platform</label>
+                                <div class="col-sm-10">
+                                <select [(ngModel)]='group.platform_id' name="platform_id" id="platform_id" class="form-control m-b">
+                                        <option value="">Select One</option>
+                                        <option *ngFor="let platform of platformList" [value]="platform.id">{{platform.name}}</option>
+                                </select>
+                                </div>
+                               
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                    
+                            <div class="form-group">
+                                    <label class="col-sm-2 control-label">Select Categories</label>
+                                    <div class="col-sm-10">
+                                    <select [(ngModel)]='group.category_id' name="category_id" id="category_id" class="form-control m-b" multiple>
+                                            <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
+                                    </select>
+                                    </div>
+                                   
+                                </div>
+                            <div class="hr-line-dashed"></div>
+                    
+
+                    <div class="form-group" [hidden]='!group.img_url'>
+                            <label class="col-sm-2 control-label">Uploaded Image</label>
+                            <div class="col-sm-10">
+                                    <img src="{{group.img_url}}" name='img_url' height="50px" width="50px">
+                            </div>    
+                    </div>
+                    <div class="hr-line-dashed" [hidden]='!group.img_url'></div>
+
+                    <div class="form-group">
+                            <label class="col-sm-2 control-label">Upload Group Image</label>
+                            <div class="col-sm-10">
+                                <input id="img_name" type="file"  accept="image/*" (change)="changeListener($event)" name="img_name" ngModel/>
+                            </div>    
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <!-- <button class="btn btn-white" type="submit" >Cancel</button> -->
+                            <button class="btn btn-primary" type="submit" [disabled]="!createGroupForm.valid">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

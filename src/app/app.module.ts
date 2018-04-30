@@ -19,6 +19,9 @@ import { CategoryService } from './services/category.service';
 import { PlatformDetailComponent } from './platform/platform-detail.component';
 import { CategoryListComponent } from './category/category-list.component';
 import { CategoryCreateComponent } from './category/category-create.component';
+import { GroupListComponent } from './group/group-list.component';
+import { GroupService } from './services/group.service';
+import { GroupCreateComponent } from './group/group-create.component';
 
 
 const appRoutes: Routes = [
@@ -45,6 +48,18 @@ const appRoutes: Routes = [
   {
     path:'createCategory',
     component:CategoryCreateComponent
+  },
+  {
+    path:'groupList',
+    component:GroupListComponent
+  },
+  {
+    path:'createGroup/:id',
+    component:GroupCreateComponent
+  },
+  {
+    path:'createGroup',
+    component:GroupCreateComponent
   }
 ];
 
@@ -60,7 +75,9 @@ const appRoutes: Routes = [
     RightSidebarComponent,
     NavHeaderComponent,
     CategoryListComponent,
-    CategoryCreateComponent
+    CategoryCreateComponent,
+    GroupListComponent,
+    GroupCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +88,7 @@ const appRoutes: Routes = [
   providers: [
     PlatformService,
     CategoryService,
+    GroupService
     // {provide: ErrorHandler , useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]
