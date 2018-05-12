@@ -24,7 +24,15 @@ export class CategoryCreateComponent implements OnInit {
 
     }
 
-    createPlatform(postData){
+    onSubmitCategory(postData){
+      if(this.route.snapshot.params["id"]){
+        this.updateCategory(postData);
+      }else{
+        this.createCategory(postData);
+      }
+    }
+
+    createCategory(postData){
     
         if((this.img_name))
         postData.value.img_name = this.img_name;
@@ -33,11 +41,10 @@ export class CategoryCreateComponent implements OnInit {
          (success) => {
             // Page redirect when getting response
             this.router.navigate(['/categoryList']);
-            console.log(success);
         });
      }
 
-     updatePlatform(postData){
+     updateCategory(postData){
 
         if((this.img_name))
         postData.value.img_name = this.img_name;
