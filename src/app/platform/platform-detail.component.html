@@ -1,4 +1,4 @@
-<div *ngIf="url !== '/platform' " class="row">
+<div class="row">
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
@@ -22,7 +22,10 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <form class="form-horizontal" #createPlatformForm="ngForm" (ngSubmit)="createPlatform(createPlatformForm)" >
+                <form 
+                class="form-horizontal" 
+                #createPlatformForm="ngForm" 
+                (ngSubmit)="onSubmitPlatform(createPlatformForm)" >
                     <div class="form-group"><label class="col-sm-2 control-label">Platform Name</label>
 
                         <div class="col-sm-10">
@@ -78,6 +81,7 @@
                             </div>    
                     </div>
                     <div class="hr-line-dashed"></div>
+                    <input id="id" type="hidden" name="id" [(ngModel)]="platform.id"/>
                     
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">

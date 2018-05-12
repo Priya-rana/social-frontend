@@ -21,9 +21,16 @@ export class PlatformDetailComponent implements OnInit {
     ngOnInit() {
         let id = this.route.snapshot.params["id"];
         this.service.get(id).subscribe((platform : Platform) => this.platform = platform );
-
     }
 
+    onSubmitPlatform(postData){
+
+      if(this.route.snapshot.params["id"]){
+        this.updatePlatform(postData);
+      }else{
+        this.createPlatform(postData);
+      }
+    }
     createPlatform(postData){
     
         if((this.img_name))
@@ -43,6 +50,7 @@ export class PlatformDetailComponent implements OnInit {
         if((this.img_name))
         postData.value.img_name = this.img_name;
    
+        
         this.service.put(postData.value).subscribe(
          (success) => {
             // Page redirect when getting response
