@@ -21,15 +21,26 @@ export class GroupCreateComponent implements OnInit {
 
   ngOnInit() {
     let id = this.route.snapshot.params["id"];
-    this.service.get(id).subscribe(groupObj =>{
-      groupObj.category_id = [];
-      for(let i = 0 ; i<groupObj.group_relations.length;i++){
-        groupObj.category_id.push(groupObj.group_relations[i]['category_id']);
-      }
-      this.group = groupObj;
-    });
+    if(id){
+      this.service.get(id).subscribe(groupObj =>{
+        groupObj.category_id = [];
+        for(let i = 0 ; i<groupObj.group_relations.length;i++){
+          groupObj.category_id.push(groupObj.group_relations[i]['category_id']);
+        }
+        this.group = groupObj;
+      });
+    }
+
     this.platformService.get().subscribe(platformObj => this.platformList = platformObj );
     this.categoryService.get().subscribe(categoryObj => this.categoryList = categoryObj );
+  }
+
+  onSubmitGroup(postData){
+    if(this.route.snapshot.params["id"]){
+      this.updateGroup(postData);
+    }else{
+      this.createGroup(postData);
+    }
   }
 
   createGroup(postData){
@@ -38,6 +49,19 @@ export class GroupCreateComponent implements OnInit {
         postData.value.img_name = this.img_name;
 
     this.service.post(postData.value).subscribe(
+      (success) => {
+         // Page redirect when getting response
+         this.router.navigate(['/groupList']);
+         console.log(success);
+     });
+  }
+
+  updateGroup(postData){
+
+    if((this.img_name))
+        postData.value.img_name = this.img_name;
+
+    this.service.put(postData.value).subscribe(
       (success) => {
          // Page redirect when getting response
          this.router.navigate(['/groupList']);

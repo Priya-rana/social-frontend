@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <form class="form-horizontal" #createGroupForm="ngForm" (ngSubmit)="createGroup(createGroupForm)" >
+                <form class="form-horizontal" #createGroupForm="ngForm" (ngSubmit)="onSubmitGroup(createGroupForm)" >
                     <div class="form-group"><label class="col-sm-2 control-label">Group Name</label>
 
                         <div class="col-sm-10">
@@ -36,10 +36,10 @@
                         </div>
                         <div *ngIf="groupNameVar.invalid && (groupNameVar.dirty || groupNameVar.touched)" class="alert alert-danger">
                             <div *ngIf="groupNameVar?.errors?.required">
-                                Category Name is required.
+                                Group Name is required.
                             </div>
                             <div *ngIf="groupNameVar?.errors?.minlength">
-                                    Category Name must of {{groupNameVar.errors.minlength.requiredLength}} character
+                                    Group Name must of {{groupNameVar.errors.minlength.requiredLength}} character
                             </div>
                         </div>
                     </div>
@@ -55,8 +55,15 @@
                                 required
                                 minlength="3" 
                                 [ngModel]="group.group_url"
-
                             >
+                        </div>
+                        <div *ngIf="groupURLVar.invalid && (groupURLVar.dirty || groupURLVar.touched)" class="alert alert-danger">
+                            <div *ngIf="groupURLVar?.errors?.required">
+                                Group URL is required.
+                            </div>
+                            <div *ngIf="groupURLVar?.errors?.minlength">
+                                Group URL must of {{groupURLVar.errors.minlength.requiredLength}} character
+                            </div>
                         </div>
                        
                     </div>
@@ -67,11 +74,16 @@
                           <div class="form-group">
                                 <label class="col-sm-2 control-label">Select Platform</label>
                                 <div class="col-sm-10">
-                                <select [(ngModel)]='group.platform_id' name="platform_id" id="platform_id" class="form-control m-b">
-                                        <option value="">Select One</option>
+                                <select [(ngModel)]='group.platform_id' name="platform_id" id="platform_id" class="form-control m-b" required #groupPlatformVar="ngModel">
                                         <option *ngFor="let platform of platformList" [value]="platform.id">{{platform.name}}</option>
                                 </select>
                                 </div>
+                                <div *ngIf="groupPlatformVar.invalid && (groupPlatformVar.dirty || groupPlatformVar.touched)" class="alert alert-danger">
+                                    <div *ngIf="groupPlatformVar?.errors?.required">
+                                        Select Platform is required.
+                                    </div>
+                                </div>
+                               
                                
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -103,6 +115,7 @@
                             </div>    
                     </div>
                     <div class="hr-line-dashed"></div>
+                    <input id="id" type="hidden" name="id" [(ngModel)]="group.id"/>
                     
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
